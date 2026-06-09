@@ -1,0 +1,24 @@
+def filterX(Task , Elements): 
+    Result = list()                        # Return = []
+
+    for no in Elements:
+        Ret = Task(no)
+        if(Ret == True):
+            Result.append(no)
+    return Result
+
+def mapX(Task , Elements):
+    Result = list()
+    for no in Elements:
+        Ret = Task(no)
+        Result.append(Ret)
+    return Result
+
+# Add=lambda A,B : A+B
+
+def reduceX(Task , Elements):              # Task : Add    &    Element : [11,21,23,31]
+    Sum = 0
+    #[11,21,23,31]
+    for no in Elements:
+        Sum = Task(Sum,no)
+    return Sum
