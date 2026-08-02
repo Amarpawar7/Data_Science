@@ -16,7 +16,7 @@ def main():
     print(dobj)
 
     
-    # sobj = pd.DataFrame([25000,27000,29000,30000], index=["blue","red","green","yellow"])     
+    # sobj = pd.DataFrame([25000,27000,29000,30000],  index=["C++","C","Python","Java"])     
 
     # print(sobj)
 
