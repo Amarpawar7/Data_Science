@@ -1,0 +1,104 @@
+# X                 Y               Result
+# -----------------------------------------
+# 1                 2                 * (Red)
+# 2                 3                 * (Red)
+# 3                 1                 . (Blue)
+# 5                 6                 . (Blue)
+# -----------------------------------------
+
+# [A,B,C,D]
+#X[1,2,3,5]
+#Y[2,3,1,6]
+# [R,R,B,B]
+
+# Predict(3,3) -> ?
+
+import numpy as np
+import math
+
+def EucDistance(P1,P2):
+    Ans = math.sqrt((P1['X'] - P2['X']) ** 2 + (P1['Y'] - P2['Y']) ** 2)
+    return Ans
+
+
+def KNeighbourClassifier():
+    border = "-"*50
+    data = [
+                {'point' : 'A', "X" : 1, 'Y' : 2, 'label' : 'Red'},
+                {'point' : 'A', "X" : 2, 'Y' : 3, 'label' : 'Red'},
+                {'point' : 'A', "X" : 3, 'Y' : 1, 'label' : 'Blue'},
+                {'point' : 'A', "X" : 5, 'Y' : 6, 'label' : 'Blue'},                  
+            ]
+
+    print(border)
+    print("User Defined KNN")
+    print(border)
+
+
+    print(border)
+    print("Training Dataset")
+    print(border)
+
+    for i in data:
+        print(i)
+
+    print(border)
+
+    new_point = {'X' : 3 , 'Y' : 3 }
+
+    # Calculate all distances
+
+    for d in data:
+        d['distance'] = EucDistance(d,new_point)
+
+    print(border)
+    print("Calculated Distances are : ")
+    print(border)
+
+    for d in data: 
+        print(d)
+        
+    sorted_data = sorted(data,key = lambda item : item['distance'])
+
+    print(border)
+    print("Sorted data is : ")
+    print(border)
+
+    for d in data:
+        print(d)
+
+    k = 3
+    nearest = sorted_data[:k]
+
+    print(border)
+    print("Nearest 3 elements are : ")
+    print(border)
+
+    for d in nearest:
+        print(d)
+
+    # Voting 
+    votes = {}
+    for neighbour in nearest:
+        label = neighbour['label']
+        votes[label] = votes.get(label,0)+1
+
+    print(border)
+    print("Voting result is : ")
+    print(border)
+
+    for d in votes:
+        print("Name : ",d ,"Number of votes : ",votes[d])
+
+    print(border)
+
+
+def main():
+
+    KNeighbourClassifier()
+    
+
+if __name__ == "__main__":
+    main()
+
+
